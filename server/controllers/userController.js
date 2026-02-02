@@ -1,4 +1,4 @@
-// server/controllers/userController.js
+const pool = require('../db');
 
 // Sample data (replace with DB later)
 let users = [
@@ -7,9 +7,16 @@ let users = [
 ];
 
 // GET /api/users
-const getUsers = (req, res) => {
-    res.status(200).json(users);
+const getUsers = async (req, res) => {
+    try {
+        const result = await pool.query('SELECT * FROM admin_users');
+        return res.status(200).json(result.rows);
+    } catch (error) {
+        console.error(error);
+        return res.status(500).json({ message: 'Server error' });
+    }
 };
+
 
 // GET /api/users/:id
 const getUserById = (req, res) => {
