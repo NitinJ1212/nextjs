@@ -9,7 +9,10 @@ export default function Home() {
 
   if (isLoading) return <p>Loading...</p>;
 
-
+  const handleClcik = () => {
+    console.log('dataUpdatedAt', dataUpdatedAt);
+    refetch();
+  }
   if (isLoading) return <p>Loading...</p>;
   return (
     <div className={styles.page}>
@@ -20,7 +23,7 @@ export default function Home() {
         <Link href="/about">
           <button>Go to About Page</button>
         </Link>
-        <button onClick={() => refetch()}>
+        <button onClick={handleClcik}>
           get data
         </button>
         <pre>{JSON.stringify(data, null, 2)}</pre>
