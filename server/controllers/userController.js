@@ -8,6 +8,7 @@ let users = [
 
 // GET /api/users
 const getUsers = async (req, res) => {
+    console.log("api called ");
     try {
         const result = await pool.query('SELECT * FROM admin_users');
         return res.status(200).json(result.rows);
